@@ -108,7 +108,7 @@ values_4 = ['TRABAJOS PROGRAMADOS']
 cdrd = cdrd[cdrd.codctr.isin(values_3)&~cdrd.desnomctr.isin(values_4)]
 
 
-texto  = ('📊Cuadro de Bandeja GPON Reporte Actualizado:📊 \n\n⌚'+ actu)
+texto  = ('📊Cuadro de Bandeja GPON HFC RESUMEN 1 Actualizado:📊 \n\n⌚'+ actu)
 
 st.markdown( f'<h1 style="color:#08298A;font-size:24px;">{texto}</h1>', unsafe_allow_html=True )
 
@@ -138,7 +138,7 @@ union = union.apply(pd.to_numeric,downcast ='signed',errors='ignore')
 union = union.astype(str)
 union = union.replace('999999', '')
 
-texto  = ('📊Cuadro de Bandeja GPON Reporte Actualizado:📊 \n\n⌚'+ actu)
+texto  = ('📊Cuadro de Bandeja GPON HFC RESUMEN 2 Actualizado:📊 \n\n⌚'+ actu)
 
 st.markdown( f'<h1 style="color:#08298A;font-size:24px;">{texto}</h1>', unsafe_allow_html=True )
 
@@ -150,19 +150,45 @@ st.dataframe(union.style
 
 
 
-
-
-
-# CSS to inject contained in a string
-hide_dataframe_row_index = """
+## borrar nombres de la pagina
+hide_streamlit_style = """
             <style>
-            .row_heading.level0 {display:none}
-            .blank {display:none}
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
             </style>
             """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
-# Inject CSS with Markdown
-st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
+st.markdown(
+    """
+    <style>
+
+    header .css-1595djx e8zbici2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+
+    header .logo-text{
+        margin: 0;
+        padding: 10px 26px;
+        font-weight: bold;
+        color: rgb(60, 255, 0);
+        font-size: 0.8em;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    f"""
+    <header class="css-1595djx e8zbici2">
+        <p class="logo-text">App Alarmas 👨🏻‍💻Giancarlos .C</p>
+    </header>
+    """,
+    unsafe_allow_html=True
+)
 
 ###
 ####
