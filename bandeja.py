@@ -9,7 +9,7 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 #st.set_page_config( layout='wide' )
 
 # title of the app
-st.title("PROCESOS POR BANDEJA")
+st.title("PROCESOS DE DATOS COBRE")
 
 
 gc = gspread.service_account(filename='datacargar-947843f340e2.json')
@@ -54,31 +54,96 @@ def to_int(val):
 df["day"] = df["day"].map(to_int)
 
 df['fec_regist']= pd.to_datetime(df['fec_regist']).dt.date
-df = pd.pivot_table(df, index=['desnomctr', 'tiptecnologia'], columns=['day'], aggfunc='size', values='codofcadm')
-df = df.reset_index()
+
+#Matrix maestra cuadro 1
+cdru = df
+
+cdru = pd.pivot_table(cdru, index=['desnomctr', 'tiptecnologia'], columns=['day'], aggfunc='size', values='codofcadm')
+cdru = cdru.reset_index()
 
 
-df = df.astype(str)
-df = df.replace('nan', 999999)
-df = df.round().astype(float,errors='ignore')
-df = df.apply(pd.to_numeric,downcast ='signed',errors='ignore')
-df = df.astype(str)
-df = df.replace('999999', '')
+cdru = cdru.astype(str)
+cdru = cdru.replace('nan', 999999)
+cdru = cdru.round().astype(float,errors='ignore')
+cdru = cdru.apply(pd.to_numeric,downcast ='signed',errors='ignore')
+cdru = cdru.astype(str)
+cdru = cdru.replace('999999', '')
 
 ####cuadro 1 tod1
 
 values_1=['GPON']
 values_2=['FIBRA','GAC-VOIP','MTTO TRABAJOS PROGRAMADOS','TRATAMIENTO CALL PIN TV-M1','INFOPYME PERU SAC','TRIAJE','2DA LINEA TRIAJE','BACK OFFICE','TRIAJE GPON']
-tod1 = df[df.tiptecnologia.isin(values_1)&df.desnomctr.isin(values_2)]
+cdru = cdru[cdru.tiptecnologia.isin(values_1)&cdru.desnomctr.isin(values_2)]
 
 texto  = ('📊Cuadro de Bandeja GPON Reporte Actualizado:📊 \n\n⌚'+ actu)
 
 st.markdown( f'<h1 style="color:#08298A;font-size:24px;">{texto}</h1>', unsafe_allow_html=True )
 
 
+st.dataframe(cdru.style
+    .set_table_styles([{'selector': 'thead', 'props': [('font-size', '5pt')]}])
+    .set_properties(**{'font-family': 'PT Sans','border': '1.3px solid black','color': 'red','font-size': '10pt'
+    })) #'background-color': 'black'
+
+######################3
+#Matrix maestra cuadro 2
+cdrd = df
+
+cdrd = pd.pivot_table(cdrd, index=['codctr', 'desnomctr', 'tiptecnologia'], columns=['day'], aggfunc='size', values='codofcadm')
+cdrd = cdrd.reset_index()
 
 
-st.dataframe(tod1.style
+cdrd = cdrd.astype(str)
+cdrd = cdrd.replace('nan', 999999)
+cdrd = cdrd.round().astype(float,errors='ignore')
+cdrd = cdrd.apply(pd.to_numeric,downcast ='signed',errors='ignore')
+cdrd = cdrd.astype(str)
+cdrd = cdrd.replace('999999', '')
+
+
+values_3 = ['209','210', '365']
+
+values_4 = ['TRABAJOS PROGRAMADOS']
+
+cdrd = cdrd[cdrd.codctr.isin(values_3)&~cdrd.desnomctr.isin(values_4)]
+
+
+texto  = ('📊Cuadro de Bandeja GPON Reporte Actualizado:📊 \n\n⌚'+ actu)
+
+st.markdown( f'<h1 style="color:#08298A;font-size:24px;">{texto}</h1>', unsafe_allow_html=True )
+
+
+st.dataframe(cdrd.style
+    .set_table_styles([{'selector': 'thead', 'props': [('font-size', '5pt')]}])
+    .set_properties(**{'font-family': 'PT Sans','border': '1.3px solid black','color': 'red','font-size': '10pt'
+    })) #'background-color': 'black'
+
+#### el  cradro 3
+
+values_3 = [353, 479]
+cdrd = df[df.codctr.isin(values_3)]
+
+values_4 = ['TRIAJE GPON']
+cdrde = df[df.desnomctr.isin(values_4)]
+
+union = pd.concat([cdrd, cdrde])
+
+union = pd.pivot_table(union, index=['tiptecnologia','desnomctr'], columns=['day'], aggfunc='size', values='codofcadm')
+union = union.reset_index()
+
+union = union.astype(str)
+union = union.replace('nan', 999999)
+union = union.round().astype(float,errors='ignore')
+union = union.apply(pd.to_numeric,downcast ='signed',errors='ignore')
+union = union.astype(str)
+union = union.replace('999999', '')
+
+texto  = ('📊Cuadro de Bandeja GPON Reporte Actualizado:📊 \n\n⌚'+ actu)
+
+st.markdown( f'<h1 style="color:#08298A;font-size:24px;">{texto}</h1>', unsafe_allow_html=True )
+
+
+st.dataframe(union.style
     .set_table_styles([{'selector': 'thead', 'props': [('font-size', '5pt')]}])
     .set_properties(**{'font-family': 'PT Sans','border': '1.3px solid black','color': 'red','font-size': '10pt'
     })) #'background-color': 'black'
