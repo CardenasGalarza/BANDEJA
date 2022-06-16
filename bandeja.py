@@ -2,6 +2,7 @@ import streamlit as st
 import gspread
 import pandas as pd
 
+st.set_page_config(page_title='Gpon-Averias', page_icon="📊", layout='centered', initial_sidebar_state='auto')
 
 # configuration
 st.set_option('deprecation.showfileUploaderEncoding', False)
