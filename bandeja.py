@@ -1,11 +1,5 @@
-from distutils.log import error
-from lib2to3.pgen2.pgen import DFAState
-from turtle import color
-import numpy as np
 import streamlit as st
 import gspread
-import numpy as np
-from pkg_resources import working_set
 import pandas as pd
 
 
