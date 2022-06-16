@@ -9,7 +9,7 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 #st.set_page_config( layout='wide' )
 
 # title of the app
-st.title("PROCESOS DE BANDEJA")
+st.title("PROCESOS POR BANDEJA")
 
 
 gc = gspread.service_account(filename='datacargar-947843f340e2.json')
