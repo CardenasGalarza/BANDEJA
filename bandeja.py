@@ -6,7 +6,7 @@ import database as db
 
 
 # emojis: https://www.webfx.com/tools/emoji-cheat-sheet/
-st.set_page_config(page_title="Sales Dashboard", page_icon=":bar_chart:")
+st.set_page_config(page_title="Sales Dashboard", page_icon=":bar_chart:", layout="wide")
 
 
 # --- USER AUTHENTICATION ---
@@ -173,8 +173,6 @@ if authentication_status:
         .set_table_styles([{'selector': 'thead', 'props': [('font-size', '5pt')]}])
         .set_properties(**{'font-family': 'PT Sans','border': '1.3px solid black','color': 'red','font-size': '10pt'
         })) #'background-color': 'black'
-
-
 
 
 
