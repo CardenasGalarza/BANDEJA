@@ -215,9 +215,11 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-texto  = ('🔒Estamos mejorando la privacidad de la información, si aún no cuentas con tus credenciales, comunicarte con: \n👨🏻‍💻Luis Llerena. \n\n👨🏻‍💻Giancarlos Cardenas.')
+texto  = ('🔒Estamos mejorando la privacidad de la información, si aún no cuentas con tus credenciales, comunicarte con:')
 st.caption( f'<h6 style="color:#08298A;">{texto}</h6>', unsafe_allow_html=True )
 
+textoo = ('\n\n👨🏻‍💻Luis Llerena. \n\n👨🏻‍💻Giancarlos Cardenas.')
+st.caption( f'<h6 style="color:#08298A;">{textoo}</h6>', unsafe_allow_html=True )
 ###
 ####
 ####
