@@ -1,2 +1,0 @@
-# BANDEJA
-cuadro diario
