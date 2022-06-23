@@ -1,1 +1,1 @@
-web: sh setup.sh && streamlit run bandeja.py
+web: sh setup.sh && streamlit run Theme_app.py
