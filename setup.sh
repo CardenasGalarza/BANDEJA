@@ -9,9 +9,10 @@ echo "\
 [theme]\n\
 base='light'\n\
 primaryColor='#3a70ec'\n\
-backgroundColor='#FFD600'\n\
+backgroundColor='#5f4bd8'\n\
 secondaryBackgroundColor = '#F0F2F6'\n\
 textColor='#0e1862'\n\
+font = 'sans serif'\n\
 
 [server]\n\
 headless = true\n\
