@@ -226,3 +226,11 @@ st.caption( f'<h6 style="color:#08298A;">{textoo}</h6>', unsafe_allow_html=True 
 ####
 ######
 ######
+primaryColor = st.get_option("theme.primaryColor")
+s = f"""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Atma:wght@600&display=swap');
+div.stButton > button:first-child {{ border: 5px solid {primaryColor}; border-radius:20px 20px 20px 20px; }}
+<style>
+"""
+st.markdown(s, unsafe_allow_html=True)
