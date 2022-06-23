@@ -1,13 +1,20 @@
 mkdir -p ~/.streamlit/
 
-echo "[theme]
-primaryColor = ‘#84a3a7’
-backgroundColor = ‘#EFEDE8’
-secondaryBackgroundColor = ‘#fafafa’
-textColor= ‘#424242’
-font = ‘sans serif’
-[server]
-headless = true
-port = $PORT
-enableCORS = false
+echo "\
+[general]\n\
+email = \"alex10estadistica@gmail.com\"\n\
+" > ~/.streamlit/credentials.toml
+
+echo "\
+[theme]\n\
+base='light'\n\
+primaryColor='#3a70ec'\n\
+backgroundColor='#FFD600'\n\
+secondaryBackgroundColor = '#F0F2F6'\n\
+textColor='#0e1862'\n\
+
+[server]\n\
+headless = true\n\
+enableCORS=false\n\
+port = $PORT\n\
 " > ~/.streamlit/config.toml
